@@ -3,21 +3,28 @@ import pafy
 
 
 class Downloader:
+    def __init__(self):
+        self.limit = 20
+        self.download_path = "C:/Adithya/fy-project/downloads"
+
     # noinspection PyMethodMayBeStatic
     def check_if_downloaded(self, title):
-        filenames = os.listdir("C:/Adithya/fy-project/downloads")
+        filenames = os.listdir(self.download_path)
+        if len(filenames) == 0:
+            return False
+        filenames = [os.path.splitext(s)[0] for s in filenames]
+        title = title.replace("|", "_")
         return title in filenames
 
     def download_from_url(self, url):
         video = pafy.new(url)
-        print(os.listdir("C:/Adithya/fy-project/downloads"))
-        print(type(os.listdir("C:/Adithya/fy-project/downloads")))
-        if self.check_if_downloaded(url):
+        if self.check_if_downloaded(video.title):
             print(f"\"{video.title}\" has already been downloaded!")
             print("Please check the \"downloads\" folder")
             print(f"{video.title}")
         else:
             best = video.getbest()
+            print("Downloading...")
             best.download(filepath="downloads/")
             print(f"\"{video.title}\" downloaded!")
 
