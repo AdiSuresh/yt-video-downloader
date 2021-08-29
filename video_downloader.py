@@ -7,6 +7,7 @@ class Downloader:
         self.limit = 20
         self.download_path = "C:/Adithya/fy-project/downloads"
         self.replaceable_chars = ['/', '|', ':']
+        self.allowed_char_rgx = '[\\w\\s-!#.]'
 
     # noinspection PyMethodMayBeStatic
     def check_if_downloaded(self, title):
