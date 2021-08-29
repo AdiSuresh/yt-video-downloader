@@ -1,5 +1,5 @@
-from video_downloader import Downloader
+from yt_downloader import VideoDownloader
 
 if __name__ == '__main__':
-    downloader = Downloader()
+    downloader = VideoDownloader()
     downloader.download_from_url_file()
